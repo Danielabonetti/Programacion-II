@@ -1,5 +1,10 @@
 package trabajopractico4;
 
+/**
+ *
+ * @author Daniela Bonetti
+ */
+
 public class Trabajopractico4 {
 
     public static void main(String[] args) {

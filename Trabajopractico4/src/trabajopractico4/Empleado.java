@@ -1,5 +1,10 @@
 package trabajopractico4;
 
+/**
+ *
+ * @author Daniela Bonetti
+ */
+
 public class Empleado {
 
     // Atributos privados (encapsulamiento)

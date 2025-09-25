@@ -1,12 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Trabajopractico2;
 
 import java.util.Scanner;
+// @author Daniela Bonetti
 
-public class TrabajoPractico2 {
+public class Trabajopractico2 {
+
+    // ----------------- Variables globales -----------------
+    static double DESCUENTO_ESPECIAL = 0.10;
 
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
@@ -34,7 +34,6 @@ public class TrabajoPractico2 {
         int mayor = num1;
         if (num2 > mayor) mayor = num2;
         if (num3 > mayor) mayor = num3;
-
         System.out.println("El mayor es: " + mayor);
 
         // ----------------- EJERCICIO 3 -----------------
@@ -42,15 +41,10 @@ public class TrabajoPractico2 {
         System.out.print("Ingrese su edad: ");
         int edad = entrada.nextInt();
 
-        if (edad < 12) {
-            System.out.println("Eres un Niño.");
-        } else if (edad <= 17) {
-            System.out.println("Eres un Adolescente.");
-        } else if (edad <= 59) {
-            System.out.println("Eres un Adulto.");
-        } else {
-            System.out.println("Eres un Adulto mayor.");
-        }
+        if (edad < 12) System.out.println("Eres un Niño.");
+        else if (edad <= 17) System.out.println("Eres un Adolescente.");
+        else if (edad <= 59) System.out.println("Eres un Adulto.");
+        else System.out.println("Eres un Adulto mayor.");
 
         // ----------------- EJERCICIO 4 -----------------
         System.out.println("\n--- Ejercicio 4: Calculadora de Descuento según Categoría ---");
@@ -61,17 +55,10 @@ public class TrabajoPractico2 {
 
         double descuento = 0;
         switch (categoria) {
-            case 'A':
-                descuento = 0.10;
-                break;
-            case 'B':
-                descuento = 0.15;
-                break;
-            case 'C':
-                descuento = 0.20;
-                break;
-            default:
-                System.out.println("Categoría inválida.");
+            case 'A': descuento = 0.10; break;
+            case 'B': descuento = 0.15; break;
+            case 'C': descuento = 0.20; break;
+            default: System.out.println("Categoría inválida.");
         }
 
         if (descuento > 0) {
@@ -82,36 +69,24 @@ public class TrabajoPractico2 {
 
         // ----------------- EJERCICIO 5 -----------------
         System.out.println("\n--- Ejercicio 5: Suma de Números Pares (while) ---");
-        int numeroWhile;
-        int sumaPares = 0;
-
+        int numeroWhile, sumaPares = 0;
         do {
             System.out.print("Ingrese un número (0 para terminar): ");
             numeroWhile = entrada.nextInt();
-            if (numeroWhile % 2 == 0 && numeroWhile != 0) {
-                sumaPares += numeroWhile;
-            }
+            if (numeroWhile % 2 == 0 && numeroWhile != 0) sumaPares += numeroWhile;
         } while (numeroWhile != 0);
-
         System.out.println("La suma de los números pares es: " + sumaPares);
 
         // ----------------- EJERCICIO 6 -----------------
         System.out.println("\n--- Ejercicio 6: Contador de Positivos, Negativos y Ceros (for) ---");
-        int positivos = 0, negativos = 0, ceros = 0;
-        int numero;
-
+        int positivos = 0, negativos = 0, ceros = 0, numero;
         for (int i = 1; i <= 10; i++) {
             System.out.print("Ingrese el número " + i + ": ");
             numero = entrada.nextInt();
-            if (numero > 0) {
-                positivos++;
-            } else if (numero < 0) {
-                negativos++;
-            } else {
-                ceros++;
-            }
+            if (numero > 0) positivos++;
+            else if (numero < 0) negativos++;
+            else ceros++;
         }
-
         System.out.println("Positivos: " + positivos);
         System.out.println("Negativos: " + negativos);
         System.out.println("Ceros: " + ceros);
@@ -122,11 +97,8 @@ public class TrabajoPractico2 {
         do {
             System.out.print("Ingrese una nota (0-10): ");
             nota = entrada.nextInt();
-            if (nota < 0 || nota > 10) {
-                System.out.println("Error: Nota inválida. Ingrese una nota entre 0 y 10.");
-            }
+            if (nota < 0 || nota > 10) System.out.println("Error: Nota inválida. Ingrese una nota entre 0 y 10.");
         } while (nota < 0 || nota > 10);
-
         System.out.println("Nota guardada correctamente.");
 
         // ----------------- EJERCICIO 8 -----------------
@@ -134,59 +106,84 @@ public class TrabajoPractico2 {
         System.out.print("Ingrese el precio base del producto: ");
         double precioBase = entrada.nextDouble();
         System.out.print("Ingrese el impuesto en porcentaje (Ej: 10 para 10%): ");
-        double impuesto = entrada.nextDouble() / 100; // lo paso a decimal
+        double impuesto = entrada.nextDouble() / 100;
         System.out.print("Ingrese el descuento en porcentaje (Ej: 5 para 5%): ");
-        double desc = entrada.nextDouble() / 100; // lo paso a decimal
+        double desc = entrada.nextDouble() / 100;
 
         double precioConDescuento = calcularPrecioFinal(precioBase, impuesto, desc);
         System.out.println("El precio final del producto es: " + precioConDescuento);
 
+        // ----------------- EJERCICIO 10 -----------------
+        System.out.println("\n--- Ejercicio 10: Actualización de Stock ---");
+        System.out.print("Ingrese el stock actual del producto: ");
+        int stockActual = entrada.nextInt();
+        System.out.print("Ingrese la cantidad vendida: ");
+        int cantidadVendida = entrada.nextInt();
+        System.out.print("Ingrese la cantidad recibida: ");
+        int cantidadRecibida = entrada.nextInt();
+
+        int nuevoStock = actualizarStock(stockActual, cantidadVendida, cantidadRecibida);
+        System.out.println("El nuevo stock del producto es: " + nuevoStock);
+
+        // ----------------- EJERCICIO 11 -----------------
+        System.out.println("\n--- Ejercicio 11: Descuento Especial ---");
+        System.out.print("Ingrese el precio del producto: ");
+        double precioProducto11 = entrada.nextDouble();
+
+        double precioFinal11 = calcularDescuentoEspecial(precioProducto11);
+        System.out.println("El precio final con descuento es: " + precioFinal11);
+
+        // ----------------- EJERCICIO 12 -----------------
+        System.out.println("\n--- Ejercicio 12: Array de Precios ---");
+        double[] precios = {199.99, 299.50, 149.75, 399.0, 89.99};
+        System.out.println("Precios originales:");
+        for (double p : precios) System.out.println("Precio: $" + p);
+
+        precios[2] = 129.99; // Modificar un precio
+        System.out.println("Precios modificados:");
+        for (double p : precios) System.out.println("Precio: $" + p);
+
+        // ----------------- EJERCICIO 13 -----------------
+        System.out.println("\n--- Ejercicio 13: Impresión Recursiva de Array ---");
+        double[] preciosRecursivos = {199.99, 299.50, 149.75, 399.0, 89.99};
+        System.out.println("Precios originales:");
+        imprimirArrayRecursivo(preciosRecursivos, 0);
+
+        preciosRecursivos[2] = 129.99; // Modificar un precio
+        System.out.println("Precios modificados:");
+        imprimirArrayRecursivo(preciosRecursivos, 0);
+
         entrada.close();
     }
 
-    // Función del Ejercicio 8
+    // ----------------- FUNCIONES -----------------
     static double calcularPrecioFinal(double precioBase, double impuesto, double descuento) {
         return precioBase + (precioBase * impuesto) - (precioBase * descuento);
-        
     }
-        
-        
-        /*Composición de funciones para calcular costo de envío y total de compra.
-a. calcularCostoEnvio(double peso, String zona): Calcula el costo de
-envío basado en la zona de envío (Nacional o Internacional) y el peso del
-paquete.
-Nacional: $5 por kg
-Internacional: $10 por kg
-b. calcularTotalCompra(double precioProducto, double
-costoEnvio): Usa calcularCostoEnvio para sumar el costo del producto con
-el costo de envío.
-Desde main(), solicita el peso del paquete, la zona de envío y el precio
-del producto. Luego, muestra el total a pagar.
-Ejemplo de entrada/salida:
-Ingrese el precio del producto: 50
-Ingrese el peso del paquete en kg: 2
-Ingrese la zona de envío (Nacional/Internacional): Nacional
-El costo de envío es: 10.0
-El total a pagar es: 60.0*/
 
-     
-    double calcularCostoEnvio (double peso, String zona){
-    double totalPeso = 0;    
-    if (zona.equalsIgnoreCase("nacional")){
-    totalPeso = 5*peso;
-    
-            }
-    if (zona.equalsIgnoreCase("internacional")){
-    totalPeso = 10*peso;
+    static int actualizarStock(int stockActual, int cantidadVendida, int cantidadRecibida) {
+        return stockActual - cantidadVendida + cantidadRecibida;
     }
-    return totalPeso;       
+
+    static double calcularDescuentoEspecial(double precio) {
+        double descuentoAplicado = precio * DESCUENTO_ESPECIAL;
+        System.out.println("El descuento especial aplicado es: " + descuentoAplicado);
+        return precio - descuentoAplicado;
     }
-    
-    double calcularTotalCompra (double precioProducto, double costoEnvio){
-    double calcularTotal = precioProducto + costoEnvio;
-    return calcularTotal;
+
+    static void imprimirArrayRecursivo(double[] array, int indice) {
+        if (indice < array.length) {
+            System.out.println("Precio: $" + array[indice]);
+            imprimirArrayRecursivo(array, indice + 1);
+        }
     }
+
 }
 
 
 
+
+
+
+
+////

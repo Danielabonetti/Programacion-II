@@ -1,0 +1,28 @@
+@startuml
+
+class Computadora {
+    - marca: String
+    - numeroSerie: String
+    + getMarca()
+    + getNumeroSerie()
+}
+
+class PlacaMadre {
+    - modelo: String
+    - chipset: String
+    + getModelo()
+    + getChipset()
+}
+
+class Propietario {
+    - nombre: String
+    - dni: int
+    + getNombre()
+    + getDni()
+}
+
+' Relaciones
+Computadora *-- PlacaMadre : composición
+Computadora <-- Propietario : asociación bidireccional
+
+@enduml
